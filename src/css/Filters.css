@@ -1,0 +1,26 @@
+.filters-box {
+    width: 220px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.filters-box h3 {
+    margin-bottom: 20px;
+    color: #4b0082;
+}
+
+.filters-box label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filters-box select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
