@@ -9,11 +9,11 @@ const JobContext = createContext();
 
 export const JobProvider = ({ children }) => {
   const [jobs, setJobs] = useState([
-    { title: "Software Developer", company: "Amazon", location: "hyderabad, India" ,logo:amazonLogo,type: "Full-Time", salary: "₹6 - ₹8 LPA"},
-    { title: "Junior Web Developer", company: "Jio", location: "Mumbai, India",logo:jioLogo,type: "Remote", salary: "₹8 - ₹12 LPA" },
-    { title: "Data Analyst", company: "Cognizant", location: "Pune, India",logo:cognizantLogo,type: "Full-Time", salary: "₹5 - ₹7 LPA"},
+    { title: "Software Developer", company: "Amazon", location: "Hyderabad" ,logo:amazonLogo,type: "Full-Time", salary: "₹6 - ₹8 LPA"},
+    { title: "Junior Web Developer", company: "Jio", location: "Mumbai",logo:jioLogo,type: "Remote", salary: "₹8 - ₹12 LPA" },
+    { title: "Data Analyst", company: "Cognizant", location: "Pune",logo:cognizantLogo,type: "Full-Time", salary: "₹5 - ₹7 LPA"},
     { title: "Frontend Engineer Intern", company: "Bread Financial", location: "Remote",logo:breadLogo,type: "Internship", salary: "₹15,000/month"},
-    { title: "Backend Developer", company: "Coforge", location: "Noida, India",logo:coforgeLogo, type: "Full-Time", salary: "₹6 - ₹9 LPA" },
+    { title: "Backend Developer", company: "Coforge", location: "Noida",logo:coforgeLogo, type: "Full-Time", salary: "₹6 - ₹9 LPA" },
   ]);
 
   return (

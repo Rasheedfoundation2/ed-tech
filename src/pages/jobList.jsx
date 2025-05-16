@@ -1,44 +1,48 @@
-import React, { useState } from "react";
-import JobCard from "../components/JobCard";
-import Filters from "../components/Filters";
-import { useJobContext } from "../context/JobContext";
+
 import "../css/joblist.css";
+// App.js
+import React, { useState, useContext } from "react";
+ import { useJobContext } from "../context/JobContext.jsx"
+import Filter from "../components/Filters.jsx"
+import JobCard from "../components/JobCard.jsx";
+const JobList = () => {
+  const { jobs } = useJobContext()
 
-function JobList() {
-  const [filters, setFilters] = useState({ location: "", type: "" });
-   const { jobs } = useJobContext();
-  //const jobs = [
-  //{ title: "Software Developer", company: "Amazon", location: "Hyderabad, India", type: "Full-Time", salary: "₹6 - ₹8 LPA" },
-  //  { title: "Junior Web Developer", company: "Jio", location: "Mumbai, India",   type: "Remote", salary: "₹8 - ₹12 LPA" },
-  //  { title: "Data Analyst", company: "Cognizant", location: "Pune, India",       type: "Full-Time", salary: "₹5 - ₹7 LPA" },
-  //  { title: "Frontend Engineer Intern", company: "Bread Financial", location: "Remote", type: "Internship", salary: "₹15,000/month" },
-  //  { title: "Backend Developer", company: "Coforge", location: "Noida, India", type: "Full-Time", salary: "₹6 - ₹9 LPA" },
-  //];
+  const [filters, setFilters] = useState({
+    location: [],
+    type: [],
+    experience: [],
+    salary: []
+  });
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+    setFilters(prev => ({
+      ...prev,
+      [name]: checked
+        ? [...prev[name], value]
+        : prev[name].filter(v => v !== value)
+    }));
   };
 
-  const filteredJobs = jobs.filter(
-    (job) =>
-      (filters.location === "" || job.location === filters.location) &&
-      (filters.type === "" || job.type === filters.type)
+  const filteredJobs = jobs.filter(job =>
+    (filters.location.length === 0 || filters.location.includes(job.location)) &&
+    (filters.type.length === 0 || filters.type.includes(job.type)) &&
+    //(filters.experience.length === 0 || filters.experience.includes(job.experience)) &&
+    (filters.salary.length === 0 || filters.salary.includes(job.salary))
   );
 
   return (
-    <div className="main-layout">
-      <Filters filters={filters} onFilterChange={handleFilterChange} />
-      <div className="job-results">
-        <h2>Latest Job Openings</h2>
-        {filteredJobs.length === 0 ? (
-          <p>No jobs found.</p>
-        ) : (
-          filteredJobs.map((job, i) => <JobCard key={i} {...job} />)
-        )}
+    <div className="layout">
+      <Filter filters={filters} handleChange={handleChange} />
+      <div className="content">
+        <h2 className="section-title">Latest Job Openings</h2>
+        {filteredJobs.map((j, i) => (
+          <JobCard key={i} job={j} />
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default JobList;
