@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../css/Chat.css'
 const Chat = () => {
     
@@ -8,6 +8,7 @@ const Chat = () => {
         { id: 2, text: "I'm fine what abt u?", type: "sent"},
     ]);
 
+    // For sending message
     const sendMessage = () => {
         const trimmed = input.trim();
         if(!trimmed) return;
@@ -22,6 +23,7 @@ const Chat = () => {
         setInput("");
     }
 
+    // Sends message when pressed Enter
     const handleEnter = (e) => {
         if (e.key === "Enter")
         {
@@ -29,10 +31,21 @@ const Chat = () => {
         }
     }
 
+    // Back button
+    const backBtn = () => {
+        
+    }
+
+    const bottomRef = useRef();
+
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth"});
+    }, [messages]);
+
     return (
         <>
             <div className="chat-wrapper">
-                <button className="back-btn"> ← </button>
+                <button className="back-btn" onClick={backBtn}> ← </button>
                 <div className="chat-container">
                     {/* Instead of demo replace it with user ka name */}
                     <div className="chat-header">Chat with Demo</div>
@@ -43,6 +56,7 @@ const Chat = () => {
                                 {msg.text}
                             </div>
                         ))}
+                        <div ref={bottomRef}></div>
                     </div>
 
                     <div className="chat-footer">
