@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../css/Chat.css'
+import { useNavigate, useParams } from "react-router-dom";
 const Chat = () => {
     
     const [input, setInput] = useState("");
@@ -7,6 +8,9 @@ const Chat = () => {
         { id: 1, text: "Hey, How r u?", type: "received"},
         { id: 2, text: "I'm fine what abt u?", type: "sent"},
     ]);
+    
+    const navigate = useNavigate();
+    const {name} = useParams();
 
     // For sending message
     const sendMessage = () => {
@@ -33,7 +37,7 @@ const Chat = () => {
 
     // Back button
     const backBtn = () => {
-        
+        navigate("/feed")
     }
 
     const bottomRef = useRef();
@@ -48,7 +52,7 @@ const Chat = () => {
                 <button className="back-btn" onClick={backBtn}> ← </button>
                 <div className="chat-container">
                     {/* Instead of demo replace it with user ka name */}
-                    <div className="chat-header">Chat with Demo</div>
+                    <div className="chat-header">Chat with {decodeURIComponent(name)}</div>
 
                     <div className="chat-message-list">
                         {messages.map((msg) => (
