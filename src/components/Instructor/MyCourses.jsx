@@ -19,7 +19,7 @@ const MyCourses = () => {
                             <h3 className="instructor-course-title">{course.title}</h3>
                 
                             <div className="instructor-course-meta">
-                                <span><FaUser className="instructor-user-icon"/> 1935 students</span>
+                                <span><FaUser className="instructor-user-icon"/> {Math.floor(Math.random() * 3000) + 100} Students</span>
                                 <span><FaStar className="instructor-star-icon"/> {course.rating}</span>
                             </div>
                         </div>
