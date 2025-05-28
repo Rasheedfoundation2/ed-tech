@@ -1,0 +1,7 @@
+.page-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f9f9f9;
+  color: #eaeaea;
+  box-sizing: border-box;
+}
