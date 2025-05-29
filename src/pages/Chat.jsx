@@ -42,6 +42,7 @@ const Chat = () => {
 
     const bottomRef = useRef();
 
+    // Scroll effect
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth"});
     }, [messages]);

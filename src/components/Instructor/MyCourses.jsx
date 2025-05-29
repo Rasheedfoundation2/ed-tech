@@ -6,7 +6,6 @@ import { FaStar, FaUser } from "react-icons/fa";
 const MyCourses = () => {
 
     const {courses} = useContext(CourseContext);
-    console.log(courses)
     
     return (
         <div className="instructor-course-wrapper">
