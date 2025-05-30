@@ -1,53 +1,39 @@
-import React from "react";
+
 import "../css/Filters.css";
 
-const Filters = ({ filters, onFilterChange }) => {
-    return (
-        <div className="filters-box">
-            <h3>Filter Jobs</h3>
-            <label>Location</label>
-            <select name="location" value={filters.location} onChange={onFilterChange}>
-                <option value="">All</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Pune">Pune</option>
-                <option value="Chennai">Chennai</option>
-            </select>
+// components/Filter.js
+import React from "react";
 
-            <label>Job Type</label>
-            <select name="type" value={filters.type} onChange={onFilterChange}>
-                <option value="">All</option>
-                <option value="Full-Time">Full-Time</option>
-                <option value="Remote">Remote</option>
-                <option value="Internship">Internship</option>
-            </select>
-            <label>Experience</label>
-            <select name="experience" value={filters.experience} onChange={onFilterChange}>
-                <option value="">All</option>
-                <option value="Fresher">Fresher</option>
-                <option value="Mid">Mid-Level</option>
-                <option value="Senior">Senior</option>
-            </select>
+const Filter = ({ filters, handleChange }) => {
+  const filterOptions = [
+    { label: "Location", name: "location", options: ["Hyderabad", "Mumbai", "Pune","Remote","Noida"] },
+    { label: "Job Type", name: "type", options: ["Full-Time", "Remote","Internship"] },
+   // { label: "Experience", name: "experience", options: ["0-1", "0-2", "2-4"] },
+    { label: "Salary", name: "salary", options: ["₹6 - ₹8 LPA", "₹8 - ₹12 LPA", "₹5 - ₹7 LPA","15000/month"] }
+  ];
 
-            <label>Salary</label>
-            <select name="salary" value={filters.salary} onChange={onFilterChange}>
-                <option value="">All</option>
-                <option value="0-5">₹0 - ₹5L</option>
-                <option value="5-10">₹5L - ₹10L</option>
-                <option value="10+">₹10L+</option>
-            </select>
-
-            <label>Company Type</label>
-            <select name="companyType" value={filters.companyType} onChange={onFilterChange}>
-                <option value="">All</option>
-                <option value="Startup">Startup</option>
-                <option value="MNC">MNC</option>
-            </select>
+  return (
+    <div className="sidebar">
+      <h3>Filter Jobs</h3>
+      {filterOptions.map(f => (
+        <div key={f.name}>
+          <h4>{f.label}</h4>
+          {f.options.map(opt => (
+            <label key={opt}>
+              <input
+                type="checkbox"
+                name={f.name}
+                value={opt}
+                onChange={handleChange}
+                checked={filters[f.name].includes(opt)}
+              />
+              {opt}
+            </label>
+          ))}
         </div>
-
-
-    );
+      ))}
+    </div>
+  );
 };
 
-export default Filters;
+export default Filter;

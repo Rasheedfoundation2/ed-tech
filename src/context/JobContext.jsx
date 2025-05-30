@@ -1,20 +1,65 @@
-import React, { createContext, useState, useContext } from "react";
-import amazonLogo from '../assets/images/jobSlider/amazon.png'
-import jioLogo from '../assets/images/jobSlider/jio.png'
-import cognizantLogo from '../assets/images/jobSlider/cognizant.png'
-import coforgeLogo from '../assets/images/jobSlider/coforge.png'
-import breadLogo from '../assets/images/jobSlider/bread.png'
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const JobContext = createContext();
 
+const staticJobs = [
+  {
+    id: "static-1",
+    title: "Software Developer",
+    company: "Amazon",
+    location: "Hyderabad",
+    logo: "/src/assets/images/jobSlider/amazon.png",
+    type: "Full-Time",
+    salary: "₹6 - ₹8 LPA",
+    isStatic: true
+  },
+  {
+    id: "static-2",
+    title: "Junior Web Developer",
+    company: "Jio",
+    location: "Mumbai",
+    logo: "/src/assets/images/jobSlider/jio.png",
+    type: "Remote",
+    salary: "₹8 - ₹12 LPA",
+    isStatic: true
+  }
+];
+
 export const JobProvider = ({ children }) => {
-  const [jobs, setJobs] = useState([
-    { title: "Software Developer", company: "Amazon", location: "hyderabad, India" ,logo:amazonLogo,type: "Full-Time", salary: "₹6 - ₹8 LPA"},
-    { title: "Junior Web Developer", company: "Jio", location: "Mumbai, India",logo:jioLogo,type: "Remote", salary: "₹8 - ₹12 LPA" },
-    { title: "Data Analyst", company: "Cognizant", location: "Pune, India",logo:cognizantLogo,type: "Full-Time", salary: "₹5 - ₹7 LPA"},
-    { title: "Frontend Engineer Intern", company: "Bread Financial", location: "Remote",logo:breadLogo,type: "Internship", salary: "₹15,000/month"},
-    { title: "Backend Developer", company: "Coforge", location: "Noida, India",logo:coforgeLogo, type: "Full-Time", salary: "₹6 - ₹9 LPA" },
-  ]);
+  const [jobs, setJobs] = useState([]);
+  const location = useLocation(); // ✅ detect route change
+
+  const loadJobsFromStorage = () => {
+    const stored = localStorage.getItem("recruiterJobs");
+    console.log("Raw recruiterJobs in localStorage:", stored);
+
+    let recruiterJobs = [];
+    try {
+      recruiterJobs = JSON.parse(stored) || [];
+    } catch (e) {
+      console.error("Failed to parse recruiterJobs:", e);
+    }
+
+    const cleanedJobs = recruiterJobs.map(job => ({
+      id: job.id,
+      title: job.title || job.position || "Untitled",
+      company: job.company || "Unknown",
+      location: job.location || "Anywhere",
+      type: job.type || "Full-Time",
+      salary: job.salary || "Negotiable",
+      logo: job.logo || "/default-logo.png",
+      isStatic: false
+    }));
+
+    const mergedJobs = [...staticJobs, ...cleanedJobs];
+    setJobs(mergedJobs);
+  };
+
+  // ✅ Reload on route change
+  useEffect(() => {
+    loadJobsFromStorage();
+  }, [location]);
 
   return (
     <JobContext.Provider value={{ jobs, setJobs }}>
@@ -24,4 +69,3 @@ export const JobProvider = ({ children }) => {
 };
 
 export const useJobContext = () => useContext(JobContext);
-

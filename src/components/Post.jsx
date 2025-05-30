@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
-import '../css/Post.css';
-import { motion } from 'motion/react';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { usePostContext } from '../context/PostContext';
+import '../css/Post.css';
 
 export default function Post({ post }) {
-  const [comments, setComments] = useState(post.comments);
   const [commentText, setCommentText] = useState('');
-  const [liked, setLiked] = useState(false);
+  const { addComment, toggleLike } = usePostContext();
 
   const handleComment = () => {
     if (commentText.trim()) {
-      setComments([...comments, commentText]);
+      addComment(post.id, commentText);
       setCommentText('');
     }
   };
-  const handleDeleteComment = (indexToRemove) => {
-  setComments(comments.filter((_, i) => i !== indexToRemove));
-};
 
+  // Get author and timestamp
+  const author = post.author || 'Unknown';
+  const timestamp = post.timestamp
+    ? new Date(post.timestamp).toLocaleString()
+    : new Date().toLocaleString();
 
   return (
-    <motion.div className="post-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+    <div className="post-card">
       <div className="post-header">
-        <strong>Jane Doe</strong>
-        <span> • 3h ago</span>
+        <strong>{author}</strong>
+        <span> • {timestamp}</span>
       </div>
-      <img src={post.image} alt="Post" className="post-image" />
+
+      {post.image && <img src={post.image} alt="Post" className="post-image" />}
       <p className="caption">{post.text}</p>
+
       <div className="post-actions">
-        <span onClick={() => setLiked(!liked)} className="like-icon">
-          {liked ? <FaHeart color="red" /> : <FaRegHeart />}
+        <span onClick={() => toggleLike(post.id)} className="like-icon">
+          <FaHeart color="red" /> {post.likes}
         </span>
       </div>
+
       <div className="comments-section">
-        {comments.map((c, i) => (
-  <div key={i} className="comment">
-    {c}
-    <span className="delete-comment" onClick={() => handleDeleteComment(i)}>🗑️</span>
-  </div>
-))}
+        {post.comments.map((c, i) => (
+          <div key={i} className="comment">{c}</div>
+        ))}
         <input
           type="text"
           placeholder="Add a comment"
@@ -47,7 +48,6 @@ export default function Post({ post }) {
         />
         <button onClick={handleComment}>Comment</button>
       </div>
-    </motion.div>
+    </div>
   );
 }
-

@@ -1,30 +1,50 @@
-// NewPost.jsx
+
 import React, { useState } from 'react';
 import '../css/NewPost.css';
 import profileImg from '../assets/react.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaImage, FaVideo } from 'react-icons/fa';
+import { FaImage, FaRegFileAlt } from 'react-icons/fa'; // ✅ use page icon
 
 export default function NewPost({ onAddPost }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [media, setMedia] = useState(null);
   const [mediaType, setMediaType] = useState('');
   const [caption, setCaption] = useState('');
+  const [isTextOnly, setIsTextOnly] = useState(false);
 
+  const role = localStorage.getItem("userRole") || "Unknown";
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (file) {
       setMedia(URL.createObjectURL(file));
       setMediaType(type);
+      setIsTextOnly(false); // it's a media post
       setIsModalOpen(true);
     }
   };
 
+  const handleTextOnlyClick = () => {
+    setMedia(null);
+    setMediaType('');
+    setIsTextOnly(true); // ✅ text-only flag
+    setIsModalOpen(true);
+  };
+
   const handlePost = () => {
-    if (media) {
-      onAddPost({ image: media, text: caption, comments: [], likes: 0 });
+    if (caption.trim() !== '') {
+      onAddPost({
+         id: Date.now(), // 🔐 needed for unique tracking
+  author: role,
+  image: media,
+  text: caption,
+  timestamp: new Date().toISOString(),
+  mediaType: mediaType || (isTextOnly ? 'text' : null),
+  comments: [],
+  likes: 0
+      });
       setMedia(null);
       setCaption('');
+      setIsTextOnly(false);
       setIsModalOpen(false);
     }
   };
@@ -32,19 +52,17 @@ export default function NewPost({ onAddPost }) {
   return (
     <div className="new-post-card">
       <div className="new-post-header">
-        <img
-          src={profileImg}
-          className="profile-pic"
-        />
-        <input className="start-post-input" placeholder="Start a post" readOnly onClick={() => setIsModalOpen(true)} />
+        <img src={profileImg} className="profile-pic" alt="User" />
+       
       </div>
 
-      <div className="media-options">
+        <div className="media-buttons-inline">
         <label className="media-button">
-          <FaVideo className="icon video" />
-          <span>Video</span>
-          <input type="file" accept="video/*" hidden onChange={(e) => handleFileChange(e, 'video')} />
+          <FaRegFileAlt className="icon write" />
+          <span>Write</span>
+          <input hidden onClick={handleTextOnlyClick} />
         </label>
+
         <label className="media-button">
           <FaImage className="icon image" />
           <span>Photo</span>
@@ -60,24 +78,19 @@ export default function NewPost({ onAddPost }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            {media && (
+            {media && mediaType === 'image' && (
               <div className="media-preview">
-                {mediaType === 'image' ? (
-                  <img src={media} alt="preview" />
-                ) : (
-                  <video controls src={media} />
-                )}
+                <img src={media} alt="preview" />
               </div>
             )}
+
             <textarea
               className="caption-input"
-              placeholder="Write a caption..."
+              placeholder="Write something...."
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
-            <button className="post-button" onClick={handlePost}>
-              Post
-            </button>
+            <button className="post-button" onClick={handlePost}>Post</button>
           </motion.div>
         )}
       </AnimatePresence>

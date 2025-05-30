@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import InterviewStage from './InterviewStage';
+import { useApplicationContext } from '../../context/ApplicationContext';
 
-const InterviewStageTracker = ({ stageRefs, currentStage, setCurrentStage }) => {
+const stageToStatus = {
+  1: 'Phone Interview',
+  2: 'In-Person Interview',
+  3: 'Completed',
+};
+
+const InterviewStageTracker = ({
+  stageRefs,
+  currentStage,
+  setCurrentStage,
+  studentId,
+  jobId
+}) => {
+  const { updateApplicationStatus } = useApplicationContext();
 
   const [data, setData] = useState({
     1: { score: '', remarks: '' },
@@ -17,7 +31,16 @@ const InterviewStageTracker = ({ stageRefs, currentStage, setCurrentStage }) => 
   };
 
   const completeStage = (stage) => {
-    if (stage < 3) setCurrentStage(stage + 1);
+    const newStage = stage + 1;
+    const newStatus = stageToStatus[stage];
+
+    if (newStatus) {
+      updateApplicationStatus(studentId, jobId, newStatus);
+    }
+
+    if (stage < 3) {
+      setCurrentStage(newStage);
+    }
   };
 
   return (

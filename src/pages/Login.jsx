@@ -22,9 +22,9 @@ const Login = () => {
         localStorage.removeItem("userRole");
 
         // Simulated credentials
-        const studentCreds = email === "arun" && password === "password" && role === "student";
-        const recruiterCreds = email === "recruiter@mail.com" && password === "password" && role === "recruiter";
-
+        const studentCreds = email === "student" && password === "password" && role === "student";
+        const recruiterCreds = email === "recruiter" && password === "password" && role === "recruiter";
+        const instructorCreds = email === "instructor" && password === "password" && role === "instructor";
         if (studentCreds) {
             localStorage.setItem("sessionToken", "student_secret_123");
             localStorage.setItem("userRole", "student");
@@ -32,8 +32,12 @@ const Login = () => {
         } else if (recruiterCreds) {
             localStorage.setItem("sessionToken", "recruiter_secret_456");
             localStorage.setItem("userRole", "recruiter");
-            navigate("/recruiter");
-        } else {
+            navigate("/recruiter/feed");
+        }else if (instructorCreds) {
+            localStorage.setItem("sessionToken", "instructor_secret_678");
+            localStorage.setItem("userRole", "instructor");
+            navigate("/instructor"); 
+        }else {
             alert("Invalid credentials");
         }
     };

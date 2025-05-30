@@ -6,7 +6,7 @@ import { searchPlugin } from '@react-pdf-viewer/search';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const ResumeViewer = () => {
+const ResumeViewer = ({ fileUrl = '/nandhagopan.pdf' }) => {
     const [keyword, setKeyword] = useState('');
 
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -24,8 +24,8 @@ const ResumeViewer = () => {
             <div style={{ height: '750px', border: '1px solid #ccc' }}>
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                     <Viewer
-                        fileUrl="/nandhagopan.pdf"
-                        defaultScale={1} // 1 = 100%
+                        fileUrl={fileUrl}
+                        defaultScale={1}
                         plugins={[defaultLayoutPluginInstance, searchPluginInstance]}
                     />
                 </Worker>
