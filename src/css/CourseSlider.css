@@ -143,3 +143,41 @@
     color: white;
   }
   
+  /* Force 1 slide per view on tablets and smaller */
+@media (max-width: 768px) {
+  .swiper-slide {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .course-card {
+    width: 100% !important;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* Force 1 slide per view on phones */
+@media (max-width: 640px) {
+  .swiper-slide {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .course-card {
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* Extra small devices (e.g. old phones) */
+@media (max-width: 480px) {
+  .swiper-slide {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .course-card {
+    width: 100% !important;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}

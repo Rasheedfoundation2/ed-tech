@@ -36,3 +36,61 @@
     transform: scale(1.05); 
 }
 
+@media (max-width: 768px) {
+    .company-logos {
+        animation: marquee 6s linear infinite;  /* Marquee animation */
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0;
+    }
+
+    /* Marquee animation */
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);  /* Adjusted to scroll smoothly */
+        }
+    }
+
+    .company-logos img {
+        margin-right: 50px;  /* Add space between the logos */
+        max-height: 40px;    /* Reduce the size of the logos on mobile */
+    }
+
+    .company-logos::after {
+        content: "";
+        width: 100%;  /* Make it span the same width as the container */
+    }
+}
+
+@media (max-width: 640px) {
+    .company-logos {
+        animation: marquee 6s linear infinite;  /* Marquee animation */
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0;
+        overflow: hidden;  /* Ensure smooth scrolling */
+    }
+
+    /* Marquee animation */
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);  /* Adjusted to scroll smoothly */
+        }
+    }
+
+    .company-logos img {
+        margin-right: 20px;  /* Less space between logos on smaller screens */
+        max-height: 30px;    /* Further reduce the size of logos on mobile */
+    }
+
+    .company-logos::after {
+        content: "";
+        width: 100%;  /* Ensure the container takes up the full width */
+    }
+}
