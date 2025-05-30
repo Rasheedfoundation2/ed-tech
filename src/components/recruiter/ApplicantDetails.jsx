@@ -17,7 +17,7 @@ const ApplicantDetails = ({ applicant }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <img className="profile-pic" src={applicant.image || '/across-the-spiderverse-spider-punk-647f249322695.png'} alt="Applicant" />
+      <img className="profile-pic" src={applicant.image || '/imagesprofile.png'} alt="Applicant" />
       <h1 className="name">{applicant.name}</h1>
       
 
