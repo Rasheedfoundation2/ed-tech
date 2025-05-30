@@ -1,0 +1,87 @@
+.recruiter-jobs-container {
+  display: flex;
+  min-height: 100vh;
+  max-width: 1360px;
+  margin: 0 auto; 
+}
+
+.recruiter-jobs-main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.recruiter-jobs-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.recruiter-jobs-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Neutral shadow */
+}
+
+.recruiter-jobs-btn:hover {
+  background: linear-gradient(to right, #007bff, #5ecbff);
+  transform: scale(1.03);
+}
+
+.recruiter-jobs-card {
+  background: #f0f4fa;
+  border: 1px solid #c7d4e2;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08); /* Neutral gray shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.recruiter-jobs-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.12); /* Stronger neutral shadow */
+}
+
+.recruiter-jobs-info {
+  flex: 2;
+}
+
+.recruiter-jobs-actions {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.recruiter-jobs-logo img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.recruiter-jobs-salary {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.recruiter-jobs-delete-btn {
+  background-color: #dc3545;
+}
+
+.recruiter-jobs-delete-btn:hover {
+  background-color: #bb2d3b;
+}
