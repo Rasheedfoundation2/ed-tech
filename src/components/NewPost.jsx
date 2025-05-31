@@ -5,19 +5,29 @@ import profileImg from '../assets/react.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaImage, FaRegFileAlt } from 'react-icons/fa'; // ✅ use page icon
 
+const fileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
+
 export default function NewPost({ onAddPost }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [media, setMedia] = useState(null);
   const [mediaType, setMediaType] = useState('');
   const [caption, setCaption] = useState('');
   const [isTextOnly, setIsTextOnly] = useState(false);
-
+  const [mediaFile, setMediaFile] = useState(null);
   const role = localStorage.getItem("userRole") || "Unknown";
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (file) {
       setMedia(URL.createObjectURL(file));
       setMediaType(type);
+      setMediaFile(file);  
       setIsTextOnly(false); // it's a media post
       setIsModalOpen(true);
     }
@@ -30,12 +40,17 @@ export default function NewPost({ onAddPost }) {
     setIsModalOpen(true);
   };
 
-  const handlePost = () => {
+  const handlePost = async () => {
     if (caption.trim() !== '') {
+      let base64Image = null;
+
+    if (mediaFile && mediaType === 'image') {
+      base64Image = await fileToBase64(mediaFile);
+    }
       onAddPost({
          id: Date.now(), // 🔐 needed for unique tracking
   author: role,
-  image: media,
+  image: base64Image, 
   text: caption,
   timestamp: new Date().toISOString(),
   mediaType: mediaType || (isTextOnly ? 'text' : null),
@@ -43,6 +58,7 @@ export default function NewPost({ onAddPost }) {
   likes: 0
       });
       setMedia(null);
+      setMediaFile(null);
       setCaption('');
       setIsTextOnly(false);
       setIsModalOpen(false);
