@@ -6,7 +6,19 @@
   border: 1px solid #ddd;
   margin-bottom: 20px;
 }
+.new-post-header-inline {
+  display: flex;
+  justify-content: center;     /* 👈 Center the row */
+  align-items: center;
+  gap: 24px;                   /* 👈 Spacing between items */
+  margin-bottom: 16px;
+}
 
+.profile-pic.small {
+  width: 50px;   /* 👈 smaller size */
+  height: 50px;
+  border-radius: 50%;
+}
 .new-post-header {
   display: flex;
   align-items: center;

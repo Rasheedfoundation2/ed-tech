@@ -51,10 +51,9 @@ export default function NewPost({ onAddPost }) {
 
   return (
     <div className="new-post-card">
-      <div className="new-post-header">
-        <img src={profileImg} className="profile-pic" alt="User" />
+      <div className="new-post-header-inline">
+        <img src={profileImg} className="profile-pic small" alt="User" />
        
-      </div>
 
         <div className="media-buttons-inline">
         <label className="media-button">
@@ -69,6 +68,7 @@ export default function NewPost({ onAddPost }) {
           <input type="file" accept="image/*" hidden onChange={(e) => handleFileChange(e, 'image')} />
         </label>
       </div>
+    </div>
 
       <AnimatePresence>
         {isModalOpen && (

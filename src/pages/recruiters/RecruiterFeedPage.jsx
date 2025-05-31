@@ -11,7 +11,7 @@ export default function RecruiterFeedPage() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Recruiter Feed</h2>
+      <h2>your feed</h2>
       <NewPost onAddPost={addPost} />
       <PostList posts={posts} />
       
