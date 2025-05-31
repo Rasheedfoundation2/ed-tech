@@ -4,11 +4,12 @@ import { useApplicationContext } from "../../context/ApplicationContext";
 import "../../css/recruiters/JobApplications.css";
 
 const stages = [
-  "stage 1",
-  "stage 2",
-  "stage 3",
-  "Rejected",
-];
+  "Application Received",   // default initial status
+  "Phone Interview",
+  "In-Person Interview",
+  "HR Interview",
+  "Rejected",               // optional
+]; 
 
 const getStatusIndex = (status) => stages.indexOf(status);
 

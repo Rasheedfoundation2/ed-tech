@@ -5,7 +5,7 @@ import { useApplicationContext } from '../../context/ApplicationContext';
 const stageToStatus = {
   1: 'Phone Interview',
   2: 'In-Person Interview',
-  3: 'Completed',
+  3: 'HR Interview',
 };
 
 const InterviewStageTracker = ({
