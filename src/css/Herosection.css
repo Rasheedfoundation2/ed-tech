@@ -84,3 +84,106 @@
     max-height: 500px;
     width: auto;
 }
+
+@media (max-width: 768px) {
+    /* Adjust Hero Container */
+    .hero-container {
+        flex-direction: column;  /* Stack the content vertically */
+        align-items: center;
+        padding: 0 1rem;
+    }
+
+    .hero-left {
+        text-align: center;  /* Center the text on smaller screens */
+        margin-bottom: 20px;  /* Less margin on smaller screens */
+    }
+
+    .hero-right {
+        order: 1;  /* Move image below text */
+        margin-top: 20px;  /* Space between text and image */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-img {
+        max-height: 350px;  /* Smaller image size for mobile */
+        width: auto;
+    }
+
+    /* Adjust Hero Title */
+    .hero-title {
+        font-size: 2rem;  /* Reduce font size for mobile */
+        margin-bottom: 20px;
+        max-width: none;
+    }
+
+    .hero-content {
+        font-size: 1rem;  /* Adjust content size for mobile */
+        margin-bottom: 25px;
+    }
+
+    /* Adjust Search Bar */
+    .search-container {
+        max-width: 90%;  /* Make search container more mobile-friendly */
+        margin: 0 auto;
+    }
+
+    .hero-input {
+        padding: 16px 20px;  /* Reduce padding for mobile */
+        font-size: 1rem;
+    }
+
+    .search-btn {
+        padding: 10px 18px;  /* Adjust button size */
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Adjust Hero Container */
+    .hero-container {
+        padding: 0 0.5rem;  /* Reduced padding for mobile */
+    }
+
+    .hero-left {
+        text-align: center;
+        margin-bottom: 15px;  /* Reduced margin for smaller screens */
+    }
+
+    .hero-right {
+        order: 1;
+        margin-top: 15px;  /* Reduced space between text and image */
+    }
+
+    .hero-img {
+        max-height: 250px;  /* Even smaller image size */
+        width: auto;
+    }
+
+    /* Adjust Hero Title */
+    .hero-title {
+        font-size: 1.75rem;  /* Further reduce title size */
+        margin-bottom: 15px;
+    }
+
+    .hero-content {
+        font-size: 0.9rem;  /* Slightly smaller content */
+        margin-bottom: 20px;
+    }
+
+    /* Adjust Search Bar */
+    .search-container {
+        max-width: 85%;  /* More compact search bar */
+    }
+
+    .hero-input {
+        padding: 14px 18px;  /* Further reduced padding */
+        font-size: 0.95rem;
+    }
+
+    .search-btn {
+        padding: 8px 16px;  /* Smaller button size */
+        font-size: 0.85rem;
+    }
+}

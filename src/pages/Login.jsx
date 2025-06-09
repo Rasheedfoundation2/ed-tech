@@ -89,10 +89,7 @@ const Login = () => {
 
                         <button className="login-btn" onClick={handleLogin}>Login</button>
 
-                        <button className="signup-btn">
-                            Don't have an account?
-                            <span className="btn-color"> Sign up</span>
-                        </button>
+                        
                     </div>
                 </div>
             </div>

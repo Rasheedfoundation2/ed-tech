@@ -3,7 +3,7 @@ import '../../css/RecruitersPostJobs.css';
 import { useNavigate } from 'react-router-dom';
 import { useRecruitersJobContext } from '../../context/RecruitersJobContext';
 //image demo k liye try karra hu
-import pic from '../../assets/images/jobSlider/amazon.png'
+import pic from '../../assets/images/recruiter.png'
 
 function RecruiterJobsPage() {
   const navigate = useNavigate();

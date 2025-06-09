@@ -85,3 +85,72 @@
 .recruiter-jobs-delete-btn:hover {
   background-color: #bb2d3b;
 }
+@media (max-width: 768px) {
+  .recruiter-jobs-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .recruiter-jobs-main {
+    padding: 1rem;
+  }
+
+  .recruiter-jobs-header {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .recruiter-jobs-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .recruiter-jobs-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  .recruiter-jobs-logo img {
+    width: 60px;
+    height: 60px;
+    margin-top: 1rem;
+    align-self: center;
+  }
+
+  .recruiter-jobs-btn {
+    width: 48%;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .recruiter-jobs-info h2 {
+    font-size: 1.1rem;
+  }
+
+  .recruiter-jobs-info p {
+    font-size: 0.95rem;
+  }
+
+  .recruiter-jobs-salary {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recruiter-jobs-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .recruiter-jobs-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .recruiter-jobs-card {
+    gap: 0.5rem;
+  }
+}
