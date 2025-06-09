@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { FaRegHeart, FaHeart,FaTrash } from 'react-icons/fa';
 import { usePostContext } from '../context/PostContext';
 import '../css/Post.css';
 
 export default function Post({ post }) {
   const [commentText, setCommentText] = useState('');
-  const { addComment, toggleLike } = usePostContext();
+  const { addComment, toggleLike, deletePost } = usePostContext();
 
   const handleComment = () => {
     if (commentText.trim()) {
@@ -19,12 +19,20 @@ export default function Post({ post }) {
   const timestamp = post.timestamp
     ? new Date(post.timestamp).toLocaleString()
     : new Date().toLocaleString();
+  const currentUser = localStorage.getItem('userRole'); // or email, depending on what you use
+  const isAuthor = post.author === currentUser;
 
   return (
     <div className="post-card">
       <div className="post-header">
         <strong>{author}</strong>
         <span> • {timestamp}</span>
+        {isAuthor && (
+        <FaTrash
+    className="delete-icon"
+    onClick={() => deletePost(post.id)}
+    title="Delete post"
+  />)}
       </div>
 
       {post.image && <img src={post.image} alt="Post" className="post-image" />}

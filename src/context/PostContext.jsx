@@ -33,6 +33,7 @@ export const PostProvider = ({ children }) => {
       )
     );
   };
+  
 
   const toggleLike = (postId) => {
     setPosts((prev) =>
@@ -43,9 +44,13 @@ export const PostProvider = ({ children }) => {
       )
     );
   };
+  const deletePost = (postId) => {
+  setPosts((prev) => prev.filter((post) => post.id !== postId));
+};
+
 
   return (
-    <PostContext.Provider value={{ posts, addPost, addComment, toggleLike }}>
+    <PostContext.Provider value={{ posts, addPost, addComment, toggleLike, deletePost }}>
       {children}
     </PostContext.Provider>
   );

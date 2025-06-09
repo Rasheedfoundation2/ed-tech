@@ -94,3 +94,14 @@
 .comments-section button:hover {
   background-color: #0056b3;
 }
+.delete-icon {
+  float: right;
+  cursor: pointer;
+  color: #888;
+  margin-left: 10px;
+  transition: color 0.2s ease;
+}
+
+.delete-icon:hover {
+  color: red;
+}
