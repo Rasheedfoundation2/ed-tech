@@ -12,7 +12,7 @@ const JobCard = ({ job }) => {
     if (job.isStatic) {
       alert("This is a demo job. You cannot apply to it.");
     } else {
-      navigate(`/apply/${job.id}`);
+      navigate(`/jobdetail/${job.id}`);
     }
   };
 

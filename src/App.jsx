@@ -32,6 +32,7 @@ import RecruiterFeedPage from './pages/recruiters/RecruiterFeedPage';
 import JobApplications from './components/recruiter/JobApplication';
 import MyCourses from './components/instructor/MyCourses';
 import Chat from './pages/Chat';
+import JobDetail from './pages/JobDetail';
 
 
 
@@ -53,6 +54,11 @@ const App = () => {
         <Route path="/apply/:jobId" element={
             <PrivateRoute allowedRole="student">
               <ApplyPage />
+            </PrivateRoute>
+          } />
+          <Route path="/jobdetail/:jobId" element={
+            <PrivateRoute allowedRole="student">
+              <JobDetail />
             </PrivateRoute>
           } />
         <Route path="/feed" element={
