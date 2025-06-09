@@ -49,6 +49,7 @@ export const JobProvider = ({ children }) => {
       type: job.type || "Full-Time",
       salary: job.salary || "Negotiable",
       logo: job.logo || "/default-logo.png",
+      description: job.description || "No description provided.",
       isStatic: false
     }));
 
