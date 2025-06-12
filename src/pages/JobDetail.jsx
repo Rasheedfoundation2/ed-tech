@@ -25,7 +25,7 @@ const JobDetail = () => {
     {/* Blue Hero Section */}
     <div className="job-hero">
       <h1 className="job-title-text">
-        {job.title?.toUpperCase()}
+        {job.title?.toUpperCase()} at {job.company?.toUpperCase()}
       </h1>
       <button className="job-apply-btn" onClick={handleApplyClick}>
         APPLY FOR THIS JOB
