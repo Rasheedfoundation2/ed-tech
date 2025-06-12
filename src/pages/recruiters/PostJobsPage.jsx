@@ -21,7 +21,7 @@ const PostJobPage = () => {
 
     // Company name: limit to 15 characters
     if (name === 'company' && value.length > 15) return;
-    if (name === 'description' && value.length > 30) return;
+    if (name === 'description' && value.length > 50) return;
 
 
     // Experience: only allow numbers
@@ -112,7 +112,7 @@ const PostJobPage = () => {
             <option value="Internship">Internship</option>
             <option value="Contract">Contract</option>
           </select>
-           <label className="post-label">Job Description(max 30 chars)</label>
+           <label className="post-label">Job Description(max 50 chars)</label>
           <textarea className="post-input" name="description" value={form.description} onChange={handleChange} required />
 
           <label className="post-label">Upload Employer Logo</label>
